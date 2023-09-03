@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Functions - DiveScript reference</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../notation.html"><strong aria-hidden="true">1.</strong> Notation</a></li><li class="chapter-item expanded "><a href="../lexical-structure.html"><strong aria-hidden="true">2.</strong> Lexical structure</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../input-format.html"><strong aria-hidden="true">2.1.</strong> Input format</a></li><li class="chapter-item expanded "><a href="../keywords.html"><strong aria-hidden="true">2.2.</strong> Keywords</a></li><li class="chapter-item expanded "><a href="../identifiers.html"><strong aria-hidden="true">2.3.</strong> Identifiers</a></li><li class="chapter-item expanded "><a href="../comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../whitespace.html"><strong aria-hidden="true">2.5.</strong> Whitespace</a></li><li class="chapter-item expanded "><a href="../tokens.html"><strong aria-hidden="true">2.6.</strong> Tokens</a></li></ol></li><li class="chapter-item expanded "><a href="../macros.html"><strong aria-hidden="true">3.</strong> Macros</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../macros-by-example.html"><strong aria-hidden="true">3.1.</strong> Macros by Example</a></li><li class="chapter-item expanded "><a href="../procedural-macros.html"><strong aria-hidden="true">3.2.</strong> Procedural Macros</a></li></ol></li><li class="chapter-item expanded "><a href="../crates-and-source-files.html"><strong aria-hidden="true">4.</strong> Crates and source files</a></li><li class="chapter-item expanded "><a href="../conditional-compilation.html"><strong aria-hidden="true">5.</strong> Conditional compilation</a></li><li class="chapter-item expanded "><a href="../items.html"><strong aria-hidden="true">6.</strong> Items</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../items/modules.html"><strong aria-hidden="true">6.1.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../items/use-declarations.html"><strong aria-hidden="true">6.2.</strong> Use declarations</a></li><li class="chapter-item expanded "><a href="../items/functions.html" class="active"><strong aria-hidden="true">6.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../items/type-aliases.html"><strong aria-hidden="true">6.4.</strong> Type aliases</a></li><li class="chapter-item expanded "><a href="../items/structs.html"><strong aria-hidden="true">6.5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="../items/enumerations.html"><strong aria-hidden="true">6.6.</strong> Enumerations</a></li><li class="chapter-item expanded "><a href="../items/constant-items.html"><strong aria-hidden="true">6.7.</strong> Constant items</a></li><li class="chapter-item expanded "><a href="../items/static-items.html"><strong aria-hidden="true">6.8.</strong> Static items</a></li><li class="chapter-item expanded "><a href="../items/traits.html"><strong aria-hidden="true">6.9.</strong> Traits</a></li><li class="chapter-item expanded "><a href="../items/implementations.html"><strong aria-hidden="true">6.10.</strong> Implementations</a></li><li class="chapter-item expanded "><a href="../items/generics.html"><strong aria-hidden="true">6.11.</strong> Generic parameters</a></li><li class="chapter-item expanded "><a href="../items/associated-items.html"><strong aria-hidden="true">6.12.</strong> Associated items</a></li></ol></li><li class="chapter-item expanded "><a href="../inheritance.html"><strong aria-hidden="true">7.</strong> Inheritance</a></li><li class="chapter-item expanded "><a href="../serialization.html"><strong aria-hidden="true">8.</strong> Serialization</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">DiveScript reference</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="functions"><a class="header" href="#functions">Functions</a></h1>
+<blockquote>
+<p><strong><sup>Syntax</sup></strong><br />
+<em>Function</em> :<br />
+   <em>FunctionQualifiers</em> <code>fn</code> <a href="../identifiers.html">IDENTIFIER</a> <a href="generics.html"><em>GenericParams</em></a><sup>?</sup><br />
+      <code>(</code> <em>FunctionParameters</em><sup>?</sup> <code>)</code><br />
+      <em>FunctionReturnType</em><sup>?</sup> <a href="generics.html#where-clauses"><em>WhereClause</em></a><sup>?</sup><br />
+      ( <a href="../expressions/block-expr.html"><em>BlockExpression</em></a> | <code>;</code> )</p>
+<p><em>FunctionQualifiers</em> :<br />
+   <code>async</code><sup>?</sup> <code>extern</code><sup>?</sup> <code>override</code><sup>?</sup></p>
+<p><em>FunctionParameters</em> :<br />
+      <em>SelfParam</em> <code>,</code><sup>?</sup><br />
+   | (<em>SelfParam</em> <code>,</code>)<sup>?</sup> <em>FunctionParam</em> (<code>,</code> <em>FunctionParam</em>)<sup>*</sup> <code>,</code><sup>?</sup></p>
+<p><em>SelfParam</em> :<br />
+   <a href="../attributes.html"><em>OuterAttribute</em></a><sup>*</sup> ( <em>ShorthandSelf</em> | <em>TypedSelf</em> )</p>
+<p><em>ShorthandSelf</em> :<br />
+    <code>self</code></p>
+<p><em>TypedSelf</em> :<br />
+   <code>self</code> <code>:</code> <a href="../types.html#type-expressions"><em>Type</em></a></p>
+<p><em>FunctionParam</em> :<br />
+   <a href="../attributes.html"><em>OuterAttribute</em></a><sup>*</sup> (
+<em>FunctionParamPattern</em> | <code>...</code> | <a href="../types.html#type-expressions"><em>Type</em></a>
+)</p>
+<p><em>FunctionParamPattern</em> :<br />
+   <a href="../patterns.html"><em>PatternNoTopAlt</em></a> <code>:</code> ( <a href="../types.html#type-expressions"><em>Type</em></a> | <code>...</code> )</p>
+<p><em>FunctionReturnType</em> :<br />
+   <code>-&gt;</code> <a href="../types.html#type-expressions"><em>Type</em></a></p>
+</blockquote>
+<p>A <em>function</em> consists of a <a href="../expressions/block-expr.html">block</a>, along with a name, a set of parameters, and an output type.
+Other than a name, all these are optional.
+Functions are declared with the keyword <code>fn</code>.
+Functions may declare a set of <em>input</em> <a href="../variables.html"><em>variables</em></a> as parameters, through which the caller passes arguments into the function, and the <em>output</em> <a href="../types.html#type-expressions"><em>type</em></a> of the value the function will return to its caller on completion.
+If the output type is not explicitly stated, it is the <a href="../types/tuple.html">unit type</a>.</p>
+<p>When referred to, a <em>function</em> yields a first-class <em>value</em> of the corresponding <a href="../types/function.html"><em>function type</em></a>, which when called evaluates to a direct call to the function.</p>
+<p>For example, this is a simple function:</p>
+<pre><code class="language-ds">fn answer_to_life_the_universe_and_everything() -&gt; i32 {
+    return 42;
+}
+</code></pre>
+<h2 id="function-parameters"><a class="header" href="#function-parameters">Function parameters</a></h2>
+<p>Function parameters are irrefutable <a href="../patterns.html">patterns</a>, so any pattern that is valid in
+an else-less <code>let</code> binding is also valid as a parameter:</p>
+<pre><code class="language-ds">fn first((value, _): (i32, i32)) -&gt; i32 { value }
+</code></pre>
+<p>If the first parameter is a <em>SelfParam</em>, this indicates that the function is a
+<a href="associated-items.html#methods">method</a>. Functions with a self parameter may only appear as an <a href="associated-items.html#associated-functions-and-methods">associated
+function</a> in a <a href="traits.html">trait</a> or <a href="implementations.html">implementation</a>.</p>
+<p>If the function is a method named <code>new</code> belonging to a <code>struct</code>, it is a <a href="#constructor">constructor</a> method.</p>
+<p>A parameter with the <code>...</code> token indicates a <a href="external-blocks.html#variadic-functions">variadic function</a>, and may only
+be used as the last parameter of an external function. The variadic
+parameter may have an optional identifier, such as <code>args: ...</code>.</p>
+<h2 id="function-body"><a class="header" href="#function-body">Function body</a></h2>
+<p>The block of a function is conceptually wrapped in a block that binds the
+argument patterns and then <code>return</code>s the value of the function's block. This
+means that the tail expression of the block, if evaluated, ends up being
+returned to the caller. As usual, an explicit return expression within
+the body of the function will short-cut that implicit return, if reached.</p>
+<p>For example, the function above behaves as if it was written as:</p>
+<pre><code class="language-ds">// argument_0 is the actual first argument passed from the caller
+let (value, _) = argument_0;
+return {
+    value
+};
+</code></pre>
+<p>Functions without a body block are terminated with a semicolon. This form
+may only appear in a <a href="traits.html">trait</a> or when the function is qualified by <code>extern</code>.</p>
+<h2 id="constructor"><a class="header" href="#constructor">Constructor</a></h2>
+<p>A constructor method (a <code>new</code> method inside a <code>struct</code>) must have a signature that takes at least <code>self</code> and returns <code>()</code>. It is a compile error if the inherited structure is not directly <code>Object</code> and the constructor method is not external and does not contain a <code>super();</code> statement at the top of the block.</p>
+<p>Example of a constructor:</p>
+<pre><code class="language-ds">struct S;
+impl S {
+    fn new(self) {}
+}
+</code></pre>
+<h2 id="generic-functions"><a class="header" href="#generic-functions">Generic functions</a></h2>
+<p>A <em>generic function</em> allows one or more <em>parameterized types</em> to appear in its
+signature. Each type parameter must be explicitly declared in an
+angle-bracket-enclosed and comma-separated list, following the function name.</p>
+<pre><code class="language-ds">// foo is generic over A and B
+
+fn foo&lt;A, B&gt;(x: A, y: B) {}
+</code></pre>
+<p>Inside the function signature and body, the name of the type parameter can be
+used as a type name. <a href="traits.html">Trait</a> bounds can be specified for type
+parameters to allow methods with that trait to be called on values of that
+type. This is specified using the <code>where</code> syntax:</p>
+<pre><code class="language-ds">use ds::fmt::Debug;
+fn foo&lt;T&gt;(x: T) where T: Debug {}
+</code></pre>
+<p>When a generic function is referenced, its type is instantiated based on the
+context of the reference. For example, calling the <code>foo</code> function here:</p>
+<pre><code class="language-ds">use ds::fmt::Debug;
+
+fn foo&lt;T&gt;(x: [T]) where T: Debug {
+    // details elided
+}
+
+foo([1, 2]);
+</code></pre>
+<p>will instantiate type parameter <code>T</code> with <code>i32</code>.</p>
+<p>The type parameters can also be explicitly supplied in a trailing <a href="../paths.html">path</a>
+component after the function name. This might be necessary if there is not
+sufficient context to determine the type parameters. For example,
+<code>memory::size_of::&lt;u32&gt;() == 4</code>.</p>
+<h2 id="external-functions"><a class="header" href="#external-functions">External functions</a></h2>
+<p>The <code>extern</code> keyword indicates that a function is external and is imported from ActionScript. External functions must contain no body. An external function can be variadic.</p>
+<p>An external function may use the <code>#[actionscript]</code> attribute with the following possible key-value pairs and names:</p>
+<ul>
+<li><code>package = &quot;q1.q2&quot;</code>: indicates the ActionScript package that qualifies the function. The <code>public</code> visibility is used.</li>
+<li><code>name = &quot;name&quot;</code>: indicates the ActionScript property name.</li>
+<li><code>get</code>: indicates that the imported ActionScript item is a variable or virtual property and that the external function is equivalent to a get-property operation.</li>
+<li><code>set</code>: indicates that the imported ActionScript item is a variable or virtual property and that the external function is equivalent to a set-property operation.</li>
+</ul>
+<p>Examples of external functions:</p>
+<pre><code class="language-ds">#[actionscript(package = &quot;com.q&quot;)]
+extern fn some_function();
+
+#[actionscript(package = &quot;com.q&quot;, name = &quot;camelCase&quot;)]
+extern fn snake_case();
+
+#[actionscript(get, package = &quot;com.q&quot;, name = &quot;x&quot;)]
+extern fn x();
+
+impl S {
+    #[actionscript(get, name = &quot;x&quot;)]
+    extern fn x(self) -&gt; f64;
+
+    #[actionscript(set, name = &quot;x&quot;)]
+    extern fn set_x(self, value: f64);
+}
+</code></pre>
+<h2 id="overriding"><a class="header" href="#overriding">Overriding</a></h2>
+<p>If a method function overrides a method in a super structure, it must be marked <code>override</code>. The override signature must be of the same function type.</p>
+<pre><code class="language-ds">impl S {
+    pub override fn f(self) {}
+}
+</code></pre>
+<h2 id="async-functions"><a class="header" href="#async-functions">Async functions</a></h2>
+<p>Functions may be qualified as async:</p>
+<pre><code class="language-ds">async fn regular_example() { }
+</code></pre>
+<p>Async functions execute directly when called, returning the <code>Future&lt;T&gt;</code> structure.</p>
+<pre><code class="language-ds">// Source
+async fn example(x: str) -&gt; u32 {
+    x.len()
+}
+</code></pre>
+<p>is roughly equivalent to:</p>
+<pre><code class="language-ds">// Desugared
+fn example(x: str) -&gt; Future&lt;u32&gt; {
+    async { x.len() }
+}
+</code></pre>
+<p>For more information on the effect of async, see <a href="../expressions/block-expr.html#async-blocks"><code>async</code> blocks</a>.</p>
+<h2 id="generator-functions"><a class="header" href="#generator-functions">Generator functions</a></h2>
+<p>Functions that contain the <code>yield</code> operator are generators. A generator returns <code>Iterator</code>.</p>
+<pre><code class="language-ds">// fn f() -&gt; Iterator&lt;Item = i32&gt;
+fn f() -&gt; i32 {
+    for i in 0..10 {
+        yield i;
+    }
+}
+</code></pre>
+<h2 id="asynchronous-generators"><a class="header" href="#asynchronous-generators">Asynchronous generators</a></h2>
+<p>A generator can be asynchronous, returning <code>Iterator&lt;Item = Future&lt;T&gt;&gt;</code>.</p>
+<pre><code class="language-ds">// fn f() -&gt; Iterator&lt;Item = Future&lt;i32&gt;&gt;
+async fn f() -&gt; i32 {
+    for i in 0..10 {
+        yield fetch_integer().await;
+    }
+}
+</code></pre>
+<h2 id="attributes-on-functions"><a class="header" href="#attributes-on-functions">Attributes on functions</a></h2>
+<p><a href="../attributes.html">Outer attributes</a> are allowed on functions. <a href="../attributes.html">Inner
+attributes</a> are allowed directly after the <code>{</code> inside its <a href="../expressions/block-expr.html">block</a>.</p>
+<p>This example shows an inner attribute on a function. The function is documented
+with just the word &quot;Example&quot;.</p>
+<pre><code class="language-ds">fn documented() {
+    #![doc = &quot;Example&quot;]
+}
+</code></pre>
+<blockquote>
+<p>Note: Except for lints, it is idiomatic to only use outer attributes on
+function items.</p>
+</blockquote>
+<p>The attributes that have meaning on a function are <code>actionscript</code>, <a href="../conditional-compilation.html#the-cfg-attribute"><code>cfg</code></a>, <a href="../conditional-compilation.html#the-cfg_attr-attribute"><code>cfg_attr</code></a>, <a href="../attributes/diagnostics.html#the-deprecated-attribute"><code>deprecated</code></a>,
+<a href="../../dsdoc/the-doc-attribute.html"><code>doc</code></a>, <a href="../attributes/diagnostics.html#lint-check-attributes">the lint check
+attributes</a>, <a href="../procedural-macros.html">the procedural macro attributes</a>, <a href="../attributes/testing.html">the testing
+attributes</a>, and <a href="../attributes/codegen.html#optimization-hints">the optimization hint attributes</a>. Functions also accept
+attributes macros.</p>
+<h2 id="attributes-on-function-parameters"><a class="header" href="#attributes-on-function-parameters">Attributes on function parameters</a></h2>
+<p><a href="../attributes.html">Outer attributes</a> are allowed on function parameters and the
+permitted <a href="../attributes.html#built-in-attributes-index">built-in attributes</a> are restricted to <code>cfg</code>, <code>cfg_attr</code>, <code>allow</code>,
+<code>warn</code>, <code>deny</code>, and <code>forbid</code>.</p>
+<pre><code class="language-ds">fn f(
+    #[cfg(foo)] a: [f64],
+    #[cfg(not(foo))] a: [u32],
+) {
+}
+</code></pre>
+<p>Inert helper attributes used by procedural macro attributes applied to items are also
+allowed but be careful to not include these inert attributes in your final <code>TokenStream</code>.</p>
+<p>For example, the following code defines an inert <code>some_inert_attribute</code> attribute that
+is not formally defined anywhere and the <code>some_proc_macro_attribute</code> procedural macro is
+responsible for detecting its presence and removing it from the output token stream.</p>
+<pre><code class="language-ds ignore">#[some_proc_macro_attribute]
+fn foo_oof(#[some_inert_attribute] arg: u32) {
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../items/use-declarations.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../items/type-aliases.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../items/use-declarations.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../items/type-aliases.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

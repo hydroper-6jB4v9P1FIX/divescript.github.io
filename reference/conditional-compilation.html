@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Conditional compilation - DiveScript reference</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="notation.html"><strong aria-hidden="true">1.</strong> Notation</a></li><li class="chapter-item expanded "><a href="lexical-structure.html"><strong aria-hidden="true">2.</strong> Lexical structure</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="input-format.html"><strong aria-hidden="true">2.1.</strong> Input format</a></li><li class="chapter-item expanded "><a href="keywords.html"><strong aria-hidden="true">2.2.</strong> Keywords</a></li><li class="chapter-item expanded "><a href="identifiers.html"><strong aria-hidden="true">2.3.</strong> Identifiers</a></li><li class="chapter-item expanded "><a href="comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="whitespace.html"><strong aria-hidden="true">2.5.</strong> Whitespace</a></li><li class="chapter-item expanded "><a href="tokens.html"><strong aria-hidden="true">2.6.</strong> Tokens</a></li></ol></li><li class="chapter-item expanded "><a href="macros.html"><strong aria-hidden="true">3.</strong> Macros</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="macros-by-example.html"><strong aria-hidden="true">3.1.</strong> Macros by Example</a></li><li class="chapter-item expanded "><a href="procedural-macros.html"><strong aria-hidden="true">3.2.</strong> Procedural Macros</a></li></ol></li><li class="chapter-item expanded "><a href="crates-and-source-files.html"><strong aria-hidden="true">4.</strong> Crates and source files</a></li><li class="chapter-item expanded "><a href="conditional-compilation.html" class="active"><strong aria-hidden="true">5.</strong> Conditional compilation</a></li><li class="chapter-item expanded "><a href="items.html"><strong aria-hidden="true">6.</strong> Items</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="items/modules.html"><strong aria-hidden="true">6.1.</strong> Modules</a></li><li class="chapter-item expanded "><a href="items/use-declarations.html"><strong aria-hidden="true">6.2.</strong> Use declarations</a></li><li class="chapter-item expanded "><a href="items/functions.html"><strong aria-hidden="true">6.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="items/type-aliases.html"><strong aria-hidden="true">6.4.</strong> Type aliases</a></li><li class="chapter-item expanded "><a href="items/structs.html"><strong aria-hidden="true">6.5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="items/enumerations.html"><strong aria-hidden="true">6.6.</strong> Enumerations</a></li><li class="chapter-item expanded "><a href="items/constant-items.html"><strong aria-hidden="true">6.7.</strong> Constant items</a></li><li class="chapter-item expanded "><a href="items/static-items.html"><strong aria-hidden="true">6.8.</strong> Static items</a></li><li class="chapter-item expanded "><a href="items/traits.html"><strong aria-hidden="true">6.9.</strong> Traits</a></li><li class="chapter-item expanded "><a href="items/implementations.html"><strong aria-hidden="true">6.10.</strong> Implementations</a></li><li class="chapter-item expanded "><a href="items/generics.html"><strong aria-hidden="true">6.11.</strong> Generic parameters</a></li><li class="chapter-item expanded "><a href="items/associated-items.html"><strong aria-hidden="true">6.12.</strong> Associated items</a></li></ol></li><li class="chapter-item expanded "><a href="inheritance.html"><strong aria-hidden="true">7.</strong> Inheritance</a></li><li class="chapter-item expanded "><a href="serialization.html"><strong aria-hidden="true">8.</strong> Serialization</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">DiveScript reference</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="conditional-compilation"><a class="header" href="#conditional-compilation">Conditional compilation</a></h1>
+<blockquote>
+<p><strong><sup>Syntax</sup></strong><br />
+<em>ConfigurationPredicate</em> :<br />
+      <em>ConfigurationOption</em><br />
+   | <em>ConfigurationAll</em><br />
+   | <em>ConfigurationAny</em><br />
+   | <em>ConfigurationNot</em></p>
+<p><em>ConfigurationOption</em> :<br />
+   <a href="identifiers.html">IDENTIFIER</a> (<code>=</code> (<a href="tokens.html#string-literals">STRING_LITERAL</a> | <a href="tokens.html#raw-string-literals">RAW_STRING_LITERAL</a>))<sup>?</sup></p>
+<p><em>ConfigurationAll</em><br />
+   <code>all</code> <code>(</code> <em>ConfigurationPredicateList</em><sup>?</sup> <code>)</code></p>
+<p><em>ConfigurationAny</em><br />
+   <code>any</code> <code>(</code> <em>ConfigurationPredicateList</em><sup>?</sup> <code>)</code></p>
+<p><em>ConfigurationNot</em><br />
+   <code>not</code> <code>(</code> <em>ConfigurationPredicate</em> <code>)</code></p>
+<p><em>ConfigurationPredicateList</em><br />
+   <em>ConfigurationPredicate</em> (<code>,</code> <em>ConfigurationPredicate</em>)<sup>*</sup> <code>,</code><sup>?</sup></p>
+</blockquote>
+<p><em>Conditionally compiled source code</em> is source code that may or may not be
+considered a part of the source code depending on certain conditions. <!-- This
+definition is sort of vacuous --> Source code can be conditionally compiled
+using the <a href="attributes.html">attributes</a> <a href="#the-cfg-attribute"><code>cfg</code></a> and <a href="#the-cfg_attr-attribute"><code>cfg_attr</code></a> and the built-in <a href="#the-cfg-macro"><code>cfg</code> macro</a>.
+These conditions are based on the target architecture of the compiled crate,
+arbitrary values passed to the compiler, and a few other miscellaneous things
+further described below in detail.</p>
+<p>Each form of conditional compilation takes a <em>configuration predicate</em> that
+evaluates to true or false. The predicate is one of the following:</p>
+<ul>
+<li>A configuration option. It is true if the option is set and false if it is
+unset.</li>
+<li><code>all()</code> with a comma separated list of configuration predicates. It is false
+if at least one predicate is false. If there are no predicates, it is true.</li>
+<li><code>any()</code> with a comma separated list of configuration predicates. It is true
+if at least one predicate is true. If there are no predicates, it is false.</li>
+<li><code>not()</code> with a configuration predicate. It is true if its predicate is false
+and false if its predicate is true.</li>
+</ul>
+<p><em>Configuration options</em> are names and key-value pairs that are either set or
+unset. Names are written as a single identifier.
+Key-value pairs are written as an identifier, <code>=</code>, and then a string. For
+example, <code>feature = &quot;foo&quot;</code> is a configuration option.</p>
+<blockquote>
+<p><strong>Note</strong>: Whitespace around the <code>=</code> is ignored. <code>foo=&quot;bar&quot;</code> and <code>foo = &quot;bar&quot;</code>
+are equivalent configuration options.</p>
+</blockquote>
+<p>Keys are not unique in the set of key-value configuration options. For example,
+both <code>feature = &quot;foo&quot;</code> and <code>feature = &quot;qux&quot;</code> can be set at the same time.</p>
+<h2 id="set-configuration-options"><a class="header" href="#set-configuration-options">Set Configuration Options</a></h2>
+<p>Which configuration options are set is determined statically during the
+compilation of the crate. Certain options are <em>compiler-set</em> based on data
+about the compilation. Other options are <em>arbitrarily-set</em>, set based on input
+passed to the compiler outside of the code. It is not possible to set a
+configuration option from within the source code of the crate being compiled.</p>
+<blockquote>
+<p><strong>Note</strong>: Configuration options with the key <code>feature</code> are a convention used
+by the DS package manager for specifying compile-time options and optional
+dependencies.</p>
+</blockquote>
+<h3 id="test"><a class="header" href="#test"><code>test</code></a></h3>
+<p>Enabled when compiling the test harness. See <a href="attributes/testing.html">Testing</a> for more on testing support.</p>
+<h3 id="debug_assertions"><a class="header" href="#debug_assertions"><code>debug_assertions</code></a></h3>
+<p>Enabled by default when compiling without optimizations.
+This can be used to enable extra debugging code in development but not in
+production.  For example, it controls the behavior of the standard library's
+<code>debug_assert!</code> macro.</p>
+<h2 id="forms-of-conditional-compilation"><a class="header" href="#forms-of-conditional-compilation">Forms of conditional compilation</a></h2>
+<h3 id="the-cfg-attribute"><a class="header" href="#the-cfg-attribute">The <code>cfg</code> attribute</a></h3>
+<blockquote>
+<p><strong><sup>Syntax</sup></strong><br />
+<em>CfgAttrAttribute</em> :<br />
+   <code>cfg</code> <code>(</code> <em>ConfigurationPredicate</em> <code>)</code></p>
+</blockquote>
+<!-- should we say they're active attributes here? -->
+<p>The <code>cfg</code> <a href="attributes.html">attribute</a> conditionally includes the thing it is attached to based
+on a configuration predicate.</p>
+<p>It is written as <code>cfg</code>, <code>(</code>, a configuration predicate, and finally <code>)</code>.</p>
+<p>If the predicate is true, the thing is rewritten to not have the <code>cfg</code> attribute
+on it. If the predicate is false, the thing is removed from the source code.</p>
+<p>When a crate-level <code>cfg</code> has a false predicate, the behavior is slightly
+different: any crate attributes preceding the <code>cfg</code> are kept, and any crate
+attributes following the <code>cfg</code> are removed.</p>
+<p>Some examples on functions:</p>
+<pre><code class="language-ds">// The function is only included in the build when compiling with feature `foo`
+#[cfg(feature = &quot;foo&quot;)]
+fn foo_feature_only() {
+  // ...
+}
+
+// This function is only included when either foo or bar is defined
+#[cfg(any(foo, bar))]
+fn needs_foo_or_bar() {
+  // ...
+}
+</code></pre>
+<p>The <code>cfg</code> attribute is allowed anywhere attributes are allowed.</p>
+<h3 id="the-cfg_attr-attribute"><a class="header" href="#the-cfg_attr-attribute">The <code>cfg_attr</code> attribute</a></h3>
+<blockquote>
+<p><strong><sup>Syntax</sup></strong><br />
+<em>CfgAttrAttribute</em> :<br />
+   <code>cfg_attr</code> <code>(</code> <em>ConfigurationPredicate</em> <code>,</code> <em>CfgAttrs</em><sup>?</sup> <code>)</code></p>
+<p><em>CfgAttrs</em> :<br />
+   <a href="attributes.html"><em>Attr</em></a> (<code>,</code> <a href="attributes.html"><em>Attr</em></a>)<sup>*</sup> <code>,</code><sup>?</sup></p>
+</blockquote>
+<p>The <code>cfg_attr</code> <a href="attributes.html">attribute</a> conditionally includes <a href="attributes.html">attributes</a> based on a
+configuration predicate.</p>
+<p>When the configuration predicate is true, this attribute expands out to the
+attributes listed after the predicate. For example, the following module will
+either be found at <code>foo.ds</code> or <code>qux.ds</code> based on the feature <code>foo</code>.</p>
+<pre><code class="language-ds">#[cfg_attr(feature = &quot;foo&quot;, path = &quot;foo.ds&quot;)]
+#[cfg_attr(not(feature = &quot;foo&quot;), path = &quot;qux.ds&quot;)]
+mod q;
+</code></pre>
+<p>Zero, one, or more attributes may be listed. Multiple attributes will each be
+expanded into separate attributes. For example:</p>
+<pre><code class="language-ds">#[cfg_attr(feature = &quot;magic&quot;, sparkles, crackles)]
+fn bewitched() {}
+
+// When the `magic` feature flag is enabled, the above will expand to:
+#[sparkles]
+#[crackles]
+fn bewitched() {}
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: The <code>cfg_attr</code> can expand to another <code>cfg_attr</code>. For example,
+<code>#[cfg_attr(feature = &quot;foo&quot;, cfg_attr(feature = &quot;qux&quot;, some_other_attribute))]</code>
+is valid. This example would be equivalent to
+<code>#[cfg_attr(all(feature = &quot;foo&quot;, feature =&quot;qux&quot;), some_other_attribute)]</code>.</p>
+</blockquote>
+<p>The <code>cfg_attr</code> attribute is allowed anywhere attributes are allowed.</p>
+<h3 id="the-cfg-macro"><a class="header" href="#the-cfg-macro">The <code>cfg</code> macro</a></h3>
+<p>The built-in <code>cfg</code> macro takes in a single configuration predicate and evaluates
+to the <code>true</code> literal when the predicate is true and the <code>false</code> literal when
+it is false.</p>
+<p>For example:</p>
+<pre><code class="language-ds">let ft = if cfg!(feature = &quot;foo&quot;) {
+    &quot;foo&quot;
+} else if cfg!(feature = &quot;qux&quot;) {
+    &quot;qux&quot;
+} else {
+    &quot;none&quot;
+};
+
+print!(&quot;Feature: {ft}&quot;);
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="crates-and-source-files.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="items.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="crates-and-source-files.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="items.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Enumerations - DiveScript reference</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../notation.html"><strong aria-hidden="true">1.</strong> Notation</a></li><li class="chapter-item expanded "><a href="../lexical-structure.html"><strong aria-hidden="true">2.</strong> Lexical structure</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../input-format.html"><strong aria-hidden="true">2.1.</strong> Input format</a></li><li class="chapter-item expanded "><a href="../keywords.html"><strong aria-hidden="true">2.2.</strong> Keywords</a></li><li class="chapter-item expanded "><a href="../identifiers.html"><strong aria-hidden="true">2.3.</strong> Identifiers</a></li><li class="chapter-item expanded "><a href="../comments.html"><strong aria-hidden="true">2.4.</strong> Comments</a></li><li class="chapter-item expanded "><a href="../whitespace.html"><strong aria-hidden="true">2.5.</strong> Whitespace</a></li><li class="chapter-item expanded "><a href="../tokens.html"><strong aria-hidden="true">2.6.</strong> Tokens</a></li></ol></li><li class="chapter-item expanded "><a href="../macros.html"><strong aria-hidden="true">3.</strong> Macros</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../macros-by-example.html"><strong aria-hidden="true">3.1.</strong> Macros by Example</a></li><li class="chapter-item expanded "><a href="../procedural-macros.html"><strong aria-hidden="true">3.2.</strong> Procedural Macros</a></li></ol></li><li class="chapter-item expanded "><a href="../crates-and-source-files.html"><strong aria-hidden="true">4.</strong> Crates and source files</a></li><li class="chapter-item expanded "><a href="../conditional-compilation.html"><strong aria-hidden="true">5.</strong> Conditional compilation</a></li><li class="chapter-item expanded "><a href="../items.html"><strong aria-hidden="true">6.</strong> Items</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../items/modules.html"><strong aria-hidden="true">6.1.</strong> Modules</a></li><li class="chapter-item expanded "><a href="../items/use-declarations.html"><strong aria-hidden="true">6.2.</strong> Use declarations</a></li><li class="chapter-item expanded "><a href="../items/functions.html"><strong aria-hidden="true">6.3.</strong> Functions</a></li><li class="chapter-item expanded "><a href="../items/type-aliases.html"><strong aria-hidden="true">6.4.</strong> Type aliases</a></li><li class="chapter-item expanded "><a href="../items/structs.html"><strong aria-hidden="true">6.5.</strong> Structs</a></li><li class="chapter-item expanded "><a href="../items/enumerations.html" class="active"><strong aria-hidden="true">6.6.</strong> Enumerations</a></li><li class="chapter-item expanded "><a href="../items/constant-items.html"><strong aria-hidden="true">6.7.</strong> Constant items</a></li><li class="chapter-item expanded "><a href="../items/static-items.html"><strong aria-hidden="true">6.8.</strong> Static items</a></li><li class="chapter-item expanded "><a href="../items/traits.html"><strong aria-hidden="true">6.9.</strong> Traits</a></li><li class="chapter-item expanded "><a href="../items/implementations.html"><strong aria-hidden="true">6.10.</strong> Implementations</a></li><li class="chapter-item expanded "><a href="../items/generics.html"><strong aria-hidden="true">6.11.</strong> Generic parameters</a></li><li class="chapter-item expanded "><a href="../items/associated-items.html"><strong aria-hidden="true">6.12.</strong> Associated items</a></li></ol></li><li class="chapter-item expanded "><a href="../inheritance.html"><strong aria-hidden="true">7.</strong> Inheritance</a></li><li class="chapter-item expanded "><a href="../serialization.html"><strong aria-hidden="true">8.</strong> Serialization</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">DiveScript reference</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="enumerations"><a class="header" href="#enumerations">Enumerations</a></h1>
+<blockquote>
+<p><strong><sup>Syntax</sup></strong><br />
+<em>Enumeration</em> :<br />
+   <code>enum</code>
+<a href="../identifiers.html">IDENTIFIER</a> 
+<a href="generics.html"><em>GenericParams</em></a><sup>?</sup>
+<a href="generics.html#where-clauses"><em>WhereClause</em></a><sup>?</sup>
+<code>{</code> <em>EnumItems</em><sup>?</sup> <code>}</code></p>
+<p><em>EnumItems</em> :<br />
+   <em>EnumItem</em> ( <code>,</code> <em>EnumItem</em> )<sup>*</sup> <code>,</code><sup>?</sup></p>
+<p><em>EnumItem</em> :<br />
+   <em>OuterAttribute</em><sup>*</sup> <a href="../visibility-and-privacy.html"><em>Visibility</em></a><sup>?</sup><br />
+   <a href="../identifiers.html">IDENTIFIER</a> ( <em>EnumItemTuple</em> | <em>EnumItemStruct</em> )<sup>?</sup>
+<em>EnumItemDiscriminant</em><sup>?</sup></p>
+<p><em>EnumItemTuple</em> :<br />
+   <code>(</code> <a href="structs.html"><em>TupleFields</em></a><sup>?</sup> <code>)</code></p>
+<p><em>EnumItemStruct</em> :<br />
+   <code>{</code> <a href="structs.html"><em>StructFields</em></a><sup>?</sup> <code>}</code></p>
+<p><em>EnumItemDiscriminant</em> :<br />
+   <code>=</code> <a href="../expressions.html"><em>Expression</em></a></p>
+</blockquote>
+<p>An <em>enumeration</em>, also referred to as an <em>enum</em>, is a simultaneous definition of a
+nominal <a href="../types/enum.html">enumerated type</a> as well as a set of <em>constructors</em>, that can be used
+to create or pattern-match values of the corresponding enumerated type.</p>
+<p>Enumerations are declared with the keyword <code>enum</code>.</p>
+<p>An example of an <code>enum</code> item and its use:</p>
+<pre><code class="language-ds">enum Animal {
+    Dog,
+    Cat,
+}
+
+let mut a: Animal = Animal::Dog;
+a = Animal::Cat;
+</code></pre>
+<p>Enum constructors can have either named or unnamed fields:</p>
+<pre><code class="language-ds">enum Animal {
+    Dog(str, f64),
+    Cat { name: str, weight: f64 },
+}
+
+let mut a: Animal = Animal::Dog(&quot;Cocoa&quot;, 37.2);
+a = Animal::Cat { name: &quot;Spotty&quot;, weight: 2.7 };
+</code></pre>
+<p>In this example, <code>Cat</code> is a <em>struct-like enum variant</em>, whereas <code>Dog</code> is simply
+called an enum variant.</p>
+<p>An enum where no constructors contain fields are called a
+<em><span id="field-less-enum">field-less enum</span></em>. For example, this is a fieldless enum:</p>
+<pre><code class="language-ds">enum Fieldless {
+    Tuple(),
+    Struct{},
+    Unit,
+}
+</code></pre>
+<p>If a field-less enum only contains unit variants, the enum is called an
+<em><span id="unit-only-enum">unit-only enum</span></em>. For example:</p>
+<pre><code class="language-ds">enum Enum {
+    Foo = 3,
+    Bar = 2,
+    Baz = 1,
+}
+</code></pre>
+<h2 id="discriminants"><a class="header" href="#discriminants">Discriminants</a></h2>
+<p>Each enum instance has a <em>discriminant</em>. The discriminant type is <code>()</code> by default. A discriminant type <code>T</code> can be specified by using <code>#[discriminant(T)]</code> and <code>T</code> must implement <code>Eq | PartialEq</code>; for example:</p>
+<pre><code class="language-ds">#[discriminant(str)]
+enum E {
+    Foo = &quot;foo&quot;,
+    Bar(f64) = &quot;bar&quot;,
+}
+</code></pre>
+<p>A discriminant value is specified by using an <code>=</code> assignment following the variant. If the discriminant type is any other than <code>()</code>, then all variants must specify their discriminant.</p>
+<p>Variants with duplicate discriminant are not allowed.</p>
+<h3 id="accessing-discriminant"><a class="header" href="#accessing-discriminant">Accessing discriminant</a></h3>
+<p>The discriminant of an enumeration can be accessed via the <code>Into&lt;D&gt;</code> trait, where <code>D</code> is the discriminant type, if the enum derives <code>PartialEq</code>. <code>Into&lt;D&gt;</code> is not implemented if <code>PartialEq</code> is not derived.</p>
+<p>Example:</p>
+<pre><code class="language-ds">#[discriminant(str)]
+#[derive(PartialEq)]
+enum E {
+    X = &quot;x&quot;,
+    Y = &quot;y&quot;,
+}
+assert_eq!(&quot;x&quot;, E::X.into());
+</code></pre>
+<h3 id="retrieving-variant-from-discriminant"><a class="header" href="#retrieving-variant-from-discriminant">Retrieving variant from discriminant</a></h3>
+<p>Retrieving a variant from a discriminant value is possible for unit-only enums. <code>TryFrom&lt;D&gt;</code> is implemented for unit-only <code>PartialEq</code> enums where <code>D</code> is the discriminant type.</p>
+<pre><code class="language-ds">#[discriminant(str)]
+#[derive(PartialEq)]
+enum E {
+    X = &quot;x&quot;,
+    Y = &quot;y&quot;,
+}
+assert_eq!(Ok(E::X), E::try_from(&quot;x&quot;));
+</code></pre>
+<h2 id="variant-visibility"><a class="header" href="#variant-visibility">Variant visibility</a></h2>
+<p>Enum variants syntactically allow a <a href="../visibility-and-privacy.html"><em>Visibility</em></a> annotation, but this is
+rejected when the enum is validated. This allows items to be parsed with a
+unified syntax across different contexts where they are used.</p>
+<pre><code class="language-ds">macro mac_variant {
+    ($vis:vis $name:ident) =&gt; {
+        enum $name {
+            $vis Unit,
+
+            $vis Tuple(f64, u32),
+
+            $vis Struct { f: f64 },
+        }
+    }
+}
+
+// Empty `vis` is allowed.
+mac_variant! { E }
+
+// This is allowed, since it is removed before being validated.
+#[cfg(FALSE)]
+enum E {
+    pub U,
+    pub(crate) T(u32),
+    pub(super) T { f: str }
+}
+</code></pre>
+<h2 id="representation"><a class="header" href="#representation">Representation</a></h2>
+<p>Enum variants construct managed object references. More generally, all types, excluding primitives, are managed object types.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../items/structs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../items/constant-items.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../items/structs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../items/constant-items.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
